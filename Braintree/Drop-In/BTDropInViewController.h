@@ -31,17 +31,17 @@
 /// @param client a client token that has been initialized with a client token
 ///
 /// @return A new Drop In view controller that is ready to be presented.
-- (instancetype)initWithClient:(BTClient *)client;
+- (instancetype)initWithClient:(BTClient*)client;
 
 /// The Braintree client used internally for communication with the Gateway. This property is exposed
 /// to enable the use of other UIViewController initializers, for example, when using Storyboards.
 ///
 /// @see BTClient
-@property (nonatomic, strong) BTClient *client;
+@property (nonatomic, strong) BTClient* client;
 
 /// The array of `BTPaymentMethod *` payment methods on file. These payment methods may be in the Vault.
 /// Most payment methods are automatically Vaulted if the client token was generated with a customer ID.
-@property (nonatomic, strong) NSArray *paymentMethods;
+@property (nonatomic, strong) NSArray* paymentMethods;
 
 #pragma mark State Change Notifications
 
@@ -51,29 +51,29 @@
 #pragma mark Customization
 
 /// The presentation theme to use for the Drop In.
-@property (nonatomic, strong) BTUI *theme;
+@property (nonatomic, strong) BTUI* theme;
 
 /// Primary text to display in the summary view.
 ///
 /// Intended to provide a name the overall transaction taking place. For example, "1 Item", "1 Year Subscription", "Yellow T-Shirt", etc.
 ///
 /// If summaryTitle or summaryDescription are nil, then the summary view is not shown.
-@property (nonatomic, copy) NSString *summaryTitle;
+@property (nonatomic, copy) NSString* summaryTitle;
 
 /// Detail text to display in the summary view.
 ///
 /// Intended to provide a few words of detail. For example, "Ships in Five Days", "15 feet by 12 feet" or "We know you'll love it"
 ///
 /// If summaryTitle or summaryDescription are nil, then the summary view is not shown.
-@property (nonatomic, copy) NSString *summaryDescription;
+@property (nonatomic, copy) NSString* summaryDescription;
 
 /// A string representation of the grand total amount
 ///
 /// For example, "$12.95"
-@property (nonatomic, copy) NSString *displayAmount;
+@property (nonatomic, copy) NSString* displayAmount;
 
 /// The text to display in the primary call-to-action button. For example: "$19 - Purchase" or "Subscribe Now".
-@property (nonatomic, copy) NSString *callToActionText;
+@property (nonatomic, copy) NSString* callToActionText;
 
 /// Whether to hide the call to action control.
 ///
@@ -86,13 +86,17 @@
 /// @see callToActionAmount
 @property (nonatomic, assign) BOOL shouldHideCallToAction;
 
+/**
+ *  Index of selected payment method (start from 0)
+ */
+@property (nonatomic, assign) NSInteger selectedPaymentMethodIndex;
+
 /// Fetches the customer's saved payment methods and populates Drop In with them.
 ///
 /// @note For the best user experience, you should call this method as early as
 ///       possible (after initializing BTDropInViewController, before presenting it)
 ///       in order to avoid a loading spinner.
 - (void)fetchPaymentMethods;
-
 
 @end
 
@@ -105,7 +109,7 @@
 ///
 /// @param viewController The Drop In view controller informing its delegate of success
 /// @param paymentMethod The selected (and possibly newly created) payment method.
-- (void)dropInViewController:(BTDropInViewController *)viewController didSucceedWithPaymentMethod:(BTPaymentMethod *)paymentMethod;
+- (void)dropInViewController:(BTDropInViewController*)viewController didSucceedWithPaymentMethod:(BTPaymentMethod*)paymentMethod;
 
 /// Informs the delegate when the user has decided to cancel out of the Drop In payment form.
 ///
@@ -114,13 +118,13 @@
 ///
 /// @param viewController The Drop In view controller informing its delegate of failure.
 /// @param error An error that describes the failure.
-- (void)dropInViewControllerDidCancel:(BTDropInViewController *)viewController;
+- (void)dropInViewControllerDidCancel:(BTDropInViewController*)viewController;
 
 @optional
 
 /// Informs the delegate when the user has entered or selected payment information.
 ///
 /// @param viewController The Drop In view controller informing its delegate
-- (void)dropInViewControllerWillComplete:(BTDropInViewController *)viewController;
+- (void)dropInViewControllerWillComplete:(BTDropInViewController*)viewController;
 
 @end
