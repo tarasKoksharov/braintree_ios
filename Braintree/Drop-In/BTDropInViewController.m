@@ -595,6 +595,9 @@
         if (self.selectedPaymentMethodIndex == NSNotFound) {
             self.selectedPaymentMethodIndex = 0;
         }
+        else {
+            self.selectedPaymentMethodIndex = _selectedPaymentMethodIndex;
+        }
         newState = BTDropInContentViewStatePaymentMethodsOnFile;
     }
     if (self.visible) {
